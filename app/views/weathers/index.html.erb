@@ -1,0 +1,27 @@
+<%= form_tag "/", method: :get do %>
+  <div>
+    City: <%= text_field_tag :city %> State: <%= text_field_tag :state %><input type="submit" name="View Forecast" class = "submitBtn">
+  </div>
+<% end %>
+
+
+<h1><%= @city %>, <%= @state %></h1>
+
+<div>
+  <img src= <%= @image_url %>>
+</div>
+
+<h3><%= @date.to_datetime.strftime("%A, %b %d") %></h3>
+<h3>Current Temp: <%= @temp %></h3>
+<h3>Condition: <%= @condition %></h3>
+
+
+<h1> Five-Day Forecast </h1>
+
+<% @forecasts.each do |forecast| %>
+  <h2><%= forecast["date"].to_datetime.strftime("%A, %b %d") %> </h2>
+  <h3>High: <%= forecast["high"] %></h3>
+  <h3>Low: <%= forecast["low"] %></h3>
+  <h4>Description: <%= forecast["text"] %></h4>
+
+<% end %>
